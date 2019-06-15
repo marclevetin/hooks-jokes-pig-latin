@@ -17,10 +17,29 @@ function Joke() {
 
   const basicPigLatinatron = (string) => {
       // TODO refactor for punctuation, quotes at the end of words
-      // TODO look up the rules of pig latin and see if there's more to it.
     return string.split(' ')
-                 .map(word => word.slice(1) + word[0] + 'ay')
-                 .join(' ');
+                .map(word => {
+                    const vowels = ['a','e','i','o','u'];
+                    const firstLetter = word[0].toLowerCase();
+                    const secondLetter = (word.length > 1) ? word[1].toLowerCase() : null;
+
+                    const isCapitalized = (firstLetter !== word[0]);
+                    const beginsWithVowel = vowels.includes(firstLetter);
+                    const secondLetterConsonant = !vowels.includes(secondLetter);
+
+                    let returnWord = '';
+
+                    if (beginsWithVowel) {
+                        returnWord = `${word}way`;
+                    } else if (!beginsWithVowel && secondLetterConsonant) {
+                        returnWord = `${word.slice(2)}${firstLetter}${secondLetter}ay`;
+                    } else {
+                        returnWord = `${word.slice(1)}${firstLetter}ay`;
+                    }
+
+                    return (isCapitalized) ? `${returnWord[0].toUpperCase()}${returnWord.slice(1)}` : `${returnWord}`;
+                })
+                .join(' ');
   }
 
   const printableJoke = pigLatinStatus ? basicPigLatinatron(joke) : joke;
