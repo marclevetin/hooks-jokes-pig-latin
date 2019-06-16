@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { start } from 'repl';
+import usePigLatin from './usePigLatin';
 
 function Joke() {
   const [joke, setJoke] = useState('');
@@ -16,70 +16,7 @@ function Joke() {
     setJoke(responseJoke);
   }
 
-  const basicPigLatinatron = (string) => {
-    // rules of Pig Latin: https://web.ics.purdue.edu/~morelanj/RAO/prepare2.html  
-    try {
-        return string.split(' ')
-                    .map(word => {
-                        if (word.length === 0) return word; // covers jokes that have two sentences and a double space after the first sentence ends
-
-                        let workingWord = word;
-                        const vowels = ['a','e','i','o','u'];
-                        const punctuation = `"'.,?`;
-
-                        let startingPunctuation = null;
-                        let endingPunctuation = null;
-
-                        if (punctuation.includes(word[0])) {
-                            startingPunctuation = word[0];
-                            workingWord = word.slice(1);
-                        }
-
-                        if (punctuation.includes(word[word.length-1])) {
-                            endingPunctuation = word[word.length-1];
-                            workingWord = workingWord.substring(0, workingWord.length - 1);
-                        }
-
-                        const firstLetter = workingWord[0].toLowerCase();
-                        const secondLetter = (workingWord.length > 1) ? workingWord[1].toLowerCase() : null;
-
-                        const isCapitalized = (firstLetter !== workingWord[0]);
-                        const beginsWithVowel = vowels.includes(firstLetter);
-                        const secondLetterConsonant = !vowels.includes(secondLetter);
-
-                        let returnWord = '';
-
-                        if (beginsWithVowel) {
-                            returnWord = `${workingWord}way`;
-                        } else if (!beginsWithVowel && secondLetterConsonant) {
-                            returnWord = `${workingWord.slice(2)}${firstLetter}${secondLetter}ay`;
-                        } else {
-                            returnWord = `${workingWord.slice(1)}${firstLetter}ay`;
-                        }
-                        
-                        if (isCapitalized) {
-                            returnWord = `${returnWord[0].toUpperCase()}${returnWord.slice(1)}`
-                        }
-
-                        if (startingPunctuation) {
-                            returnWord = `${startingPunctuation}${returnWord}`;
-                        }
-
-                        if (endingPunctuation) {
-                            returnWord = `${returnWord}${endingPunctuation}`;
-                        }
-
-                        return returnWord;
-                    })
-                    .join(' ');
-    }
-    catch(error) {
-        console.error('Problem with this joke:', arguments[0]);
-        console.error(error.message);
-    }
-  }
-
-  const printableJoke = pigLatinStatus ? basicPigLatinatron(joke) : joke;
+  const printableJoke = pigLatinStatus ? usePigLatin(joke) : joke;
 
   return (
     <div>
