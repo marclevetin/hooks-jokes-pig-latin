@@ -18,7 +18,6 @@ function Joke() {
 
   const basicPigLatinatron = (string) => {
     // rules of Pig Latin: https://web.ics.purdue.edu/~morelanj/RAO/prepare2.html  
-    // TODO refactor for punctuation, quotes at the end of words
     try {
         return string.split(' ')
                     .map(word => {
