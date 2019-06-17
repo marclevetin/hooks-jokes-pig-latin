@@ -10,7 +10,7 @@ const usePigLatin = (string) => {
 
                         let workingWord = word;
                         const vowels = ['a','e','i','o','u'];
-                        const punctuation = `"'.,?`;
+                        const punctuation = `"'.,?:`;
 
                         let startingPunctuation = null;
                         let endingPunctuation = null;

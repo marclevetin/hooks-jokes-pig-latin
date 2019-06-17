@@ -10,14 +10,12 @@ function SearchJoke(props) {
     },[pigLatinStatus]);
 
     const translateJokes = () => { 
-        const translatedJokes = allJokes.map(joke => {
+        return allJokes.map(joke => {
             return {
                 id: joke.id,
                 joke: props.translate(joke.joke),
             }
         });
-        
-        setAllJokes(translatedJokes);
     }
 
     const fetchData = async (term) => {
@@ -37,6 +35,8 @@ function SearchJoke(props) {
         event.preventDefault();
         fetchData(searchTerm);
     }
+
+    const printableJokes = (pigLatinStatus) ? translateJokes() : allJokes;
 
     return (
         <div>
@@ -59,7 +59,7 @@ function SearchJoke(props) {
         </p>
             </form>
             <ul>
-                {allJokes.map(joke => <li key={joke.id}>{joke.joke}</li>)}
+                {printableJokes.map(joke => <li key={joke.id}>{joke.joke}</li>)}
             </ul>
         </div>
     )
