@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import usePigLatin from './usePigLatin';
 
-function Joke() {
+function Joke(props) {
   const [joke, setJoke] = useState('');
   const [pigLatinStatus, setPigLatinStatus] = useState(false);
 
@@ -16,10 +15,11 @@ function Joke() {
     setJoke(responseJoke);
   }
 
-  const printableJoke = pigLatinStatus ? usePigLatin(joke) : joke;
+  const printableJoke = pigLatinStatus ? props.translate(joke) : joke;
 
   return (
     <div>
+        <h2>Get a Random Joke</h2>
         <p>{printableJoke}</p>
         <button onClick={() => fetchData()}>
             Get a new joke
