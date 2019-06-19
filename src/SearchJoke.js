@@ -5,6 +5,8 @@ function SearchJoke(props) {
     const [allJokes, setAllJokes] = useState([]);
     const [pigLatinStatus, setPigLatinStatus] = useState(false);
 
+    const noJokesFoundObject = { id: null, joke: "Sorry!  No jokes found.  Try again."}
+
     useEffect(() => {
         translateJokes();
     },[pigLatinStatus]);
@@ -22,7 +24,15 @@ function SearchJoke(props) {
         const encodedTerm = encodeURIComponent(searchTerm);
         const responseJokes = await fetch(`https://icanhazdadjoke.com/search?term=${encodedTerm}`, {
           headers: { Accept: "application/json"} 
-        }).then(data => data.json()).then(response => response.results);
+        })
+        .then(data => data.json())
+        .then(response => {
+            if (response.results.length) {
+                return response.results;
+            } else {
+                return [noJokesFoundObject];
+            }
+        });
         setAllJokes(responseJokes);
     }
 
