@@ -1,9 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import PigLatinContext from './PigLatinContext';
 
 function SearchJoke(props) {
     const [searchTerm, setSearchTerm] = useState('');
     const [allJokes, setAllJokes] = useState([]);
     const [pigLatinStatus, setPigLatinStatus] = useState(false);
+
+    const context = useContext(PigLatinContext);  
 
     const noJokesFoundObject = { id: null, joke: "Sorry!  No jokes found.  Try again."}
 
@@ -15,7 +18,7 @@ function SearchJoke(props) {
         return allJokes.map(joke => {
             return {
                 id: joke.id,
-                joke: props.translate(joke.joke),
+                joke: context.translate(joke.joke),
             }
         });
     }
