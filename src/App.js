@@ -1,12 +1,27 @@
 import React from "react";
 import Joke from './Joke';
-import SearchJoke from './SearchJoke';
+import SearchJoke from './SearchJoke'; 
+
+import { createGlobalStyle } from "styled-components";
+const GlobalStyles = createGlobalStyle`
+  body {
+    @import url('https://fonts.googleapis.com/css?family=Arizonia|Open+Sans');
+    margin: 0;
+  }
+`
+import {Wrapper, Center, Header1, Subtitle} from './styledComponents';
 
 export default () => (
-  <>
-  <h1>Jokes with React Hooks</h1>
-    <Joke />  
-    <hr />
-    <SearchJoke />
-  </>
+    <>
+    <GlobalStyles />
+    <Wrapper>
+        <Center>
+            <Header1>React to Dad Jokes</Header1>
+            <Subtitle>Hooks, lines, and stinkers</Subtitle>
+            <Joke />  
+            <hr />
+            <SearchJoke />
+        </Center>
+    </Wrapper>
+    </>
 );

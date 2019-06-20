@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PigLatinContext from './PigLatinContext';
 
+import {Header2, Paragraph, Button, Label, Checkbox} from './styledComponents';
+
 function Joke(props) {
   const [joke, setJoke] = useState('');
   const [pigLatinStatus, setPigLatinStatus] = useState(false);
@@ -22,17 +24,16 @@ function Joke(props) {
 
   return (
     <div>
-      {context.name}
-        <h2>Get a Random Joke</h2>
-        <p>{printableJoke}</p>
-        <button onClick={() => fetchData()}>
+        <Header2>Get a Random Joke</Header2>
+        <Paragraph>{printableJoke}</Paragraph>
+        <Button onClick={() => fetchData()}>
             Get a new joke
-        </button>
-        <p>
-        <label>Enable Pig Latin!
+        </Button>
+        <Paragraph>
+        <Label>Enable Pig Latin!
             <input type="checkbox" onChange={() => setPigLatinStatus(!pigLatinStatus)} />
-        </label>
-        </p>
+        </Label>
+        </Paragraph>
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import React, {useState, useEffect, useContext} from 'react';
 import PigLatinContext from './PigLatinContext';
 
+import {Header2, Button, Paragraph, Label, Form, Input, List, ListItem} from './styledComponents';
+
 function SearchJoke(props) {
     const [searchTerm, setSearchTerm] = useState('');
     const [allJokes, setAllJokes] = useState([]);
@@ -53,27 +55,27 @@ function SearchJoke(props) {
 
     return (
         <div>
-            <h2>Search for a Joke</h2>
-            <form onSubmit={submitForm}>
-            <input 
-                type="text" 
-                name="Term"
-                placeholder="Enter a search term" 
-                value={searchTerm}
-                onChange={handleSearchTerm}
+            <Header2>Search for a Joke</Header2>
+            <Form onSubmit={submitForm}>
+                <Input 
+                    type="text" 
+                    name="Term"
+                    placeholder="Enter a search term" 
+                    value={searchTerm}
+                    onChange={handleSearchTerm}
                 /> 
-            <button type="submit">
-                Search!
-            </button>
-            <p>
-        <label>Enable Pig Latin!
+                <Button type="submit">
+                    Search!
+                </Button>
+            </Form>
+            {/* <Paragraph> */}
+        <Label>Enable Pig Latin!
             <input type="checkbox" onChange={() => setPigLatinStatus(!pigLatinStatus)} />
-        </label>
-        </p>
-            </form>
-            <ul>
-                {printableJokes.map(joke => <li key={joke.id}>{joke.joke}</li>)}
-            </ul>
+        </Label>
+        {/* </Paragraph> */}
+            <List>
+                {printableJokes.map(joke => <ListItem key={joke.id}>{joke.joke}</ListItem>)}
+            </List>
         </div>
     )
 }
