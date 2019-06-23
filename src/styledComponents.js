@@ -37,6 +37,11 @@ export const Button = styled.button`
   color: ${colorPalette.dark};
   margin: 0 1em;
   padding: 0.25em 1em;
+  transition: background 1s ease;
+
+  &:hover {
+      background: ${colorPalette.darkGreen};
+  }
 `;
 
 export const Input = styled.input`
@@ -89,5 +94,9 @@ export const ListItem = styled.li`
     border: 1px solid ${colorPalette.darkGreen};
     margin: .25em 0 ;
     padding: 1em;
-    flex: 0 1 30%;
+    transition: background 1s ease;
+
+    &:hover {
+        background: ${colorPalette.darkGreen};
+    }
 `;
