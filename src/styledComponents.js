@@ -53,6 +53,7 @@ export const Input = styled.input`
 `;
 
 export const Header1 = styled.h1`
+    text-shadow: 1px 1px ${colorPalette.red};
     font-family: ${fonts.headers};
     font-size: 2rem;
     text-align: center;
@@ -60,6 +61,7 @@ export const Header1 = styled.h1`
 `;
 
 export const Subtitle = styled.h1`
+    text-shadow: 1px 1px ${colorPalette.yellow};
     font-family: ${fonts.headers};
     font-size: 1.5rem;
     text-align: center;
