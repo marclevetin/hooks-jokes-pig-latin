@@ -7,10 +7,13 @@
     "build": "parcel build index.html",
     "build-prod": "parcel build index.html --public-url ./",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "jest"
   },
   "license": "MIT",
   "dependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-router-dom": "^5.0.1",
@@ -19,19 +22,26 @@
   "devDependencies": {
     "@babel/core": "^7.0.0-0",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-knobs": "^5.1.9",
     "@storybook/addon-links": "^5.1.9",
     "@storybook/addons": "^5.1.9",
     "@storybook/react": "^5.1.9",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-styled-components": "^1.10.1",
     "babel-preset-nano-react-app": "^0.1.0",
-    "parcel-bundler": "^1.11.0"
+    "jest": "^24.9.0",
+    "parcel-bundler": "^1.11.0",
+    "react-test-renderer": "^16.9.0"
   },
   "babel": {
     "presets": [
-      "nano-react-app"
+      "nano-react-app",
+      "@babel/preset-env",
+      "@babel/preset-react"
     ],
     "plugins": [
       [
